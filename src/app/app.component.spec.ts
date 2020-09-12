@@ -1,11 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PostListMockComponent,
+        PostCreateMockComponent,
+        HeaderMockComponent
       ],
     }).compileComponents();
   }));
@@ -16,16 +20,22 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'mean-stack-demo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('mean-stack-demo');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('mean-stack-demo app is running!');
-  });
 });
+
+@Component({
+  selector: 'app-post-list',
+  template: 'app-post-list'
+})
+class PostListMockComponent {}
+
+@Component({
+  selector: 'app-post-create',
+  template: 'app-post-create'
+})
+class PostCreateMockComponent {}
+
+@Component({
+  selector: 'app-header',
+  template: 'app-header'
+})
+class HeaderMockComponent {}

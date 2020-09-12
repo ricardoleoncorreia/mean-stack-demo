@@ -1,0 +1,12 @@
+:host {
+    display: block;
+    margin-top: 1rem;
+}
+
+.posts-list {
+    
+    &__empty-message {
+        text-align: center;
+    }
+    
+}
