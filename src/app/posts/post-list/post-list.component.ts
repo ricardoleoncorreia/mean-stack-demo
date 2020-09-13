@@ -10,14 +10,14 @@ import { PostsService } from '../shared/posts.service';
 })
 export class PostListComponent implements OnInit, OnDestroy {
     posts: Post[] = [];
-    subscription: Subscription;
+    subscription: Subscription = new Subscription();
 
     constructor(private postsService: PostsService) {}
 
     ngOnInit(): void {
-        this.posts = this.postsService.getPosts();
-        this.subscription = this.postsService.getPostsUpdatedListener()
-                                             .subscribe((posts: Post[]) => this.posts = posts);
+        const savePosts = (posts: Post[]) => this.posts = posts;
+        this.subscription.add(this.postsService.getPosts().subscribe(savePosts));
+        this.subscription.add(this.postsService.getPostsUpdatedListener().subscribe(savePosts));
     }
 
     ngOnDestroy(): void {
