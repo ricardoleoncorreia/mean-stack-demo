@@ -8,20 +8,20 @@ import { PostsService } from '../shared/posts.service';
     templateUrl: './post-create.component.html',
     styleUrls: ['./post-create.component.scss']
 })
-
 export class PostCreateComponent implements OnDestroy {
 
-    subscription: Subscription = new Subscription();
+  subscription: Subscription = new Subscription();
 
-    constructor(private postsService: PostsService) {}
+  constructor(private postsService: PostsService) {}
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
-    onAddPost(postForm: NgForm): void {
-        if (postForm.invalid) { return; }
-        this.subscription.add(this.postsService.addPost(postForm.value.title, postForm.value.content).subscribe());
-        postForm.resetForm();
-    }
+  onAddPost(postForm: NgForm): void {
+    if (postForm.invalid) { return; }
+    this.subscription.add(this.postsService.addPost(postForm.value.title, postForm.value.content).subscribe());
+    postForm.resetForm();
+  }
+
 }
